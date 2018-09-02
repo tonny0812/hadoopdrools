@@ -1,0 +1,11 @@
+import com.keepgulp.hadoopdrools.model.Entry;
+import com.keepgulp.hadoopdrools.model.RunningValue;
+
+rule "Reduce Transactions By Summation"
+ruleflow-group "reducer-rules"
+when
+	$runningReduce : RunningValue()
+	$entry : Entry()
+then
+	$runningReduce.value = $runningReduce.value + $entry.value;
+end

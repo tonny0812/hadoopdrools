@@ -1,0 +1,12 @@
+import com.keepgulp.hadoopdrools.model.Transaction;
+import com.keepgulp.hadoopdrools.model.Entry;
+
+//global org.drools.mapreduce.core.api.Collector collector;
+
+rule "Map Transactions By Credit Card Number"
+ruleflow-group "mapper-rules"
+when
+	$transaction : Transaction($cc: creditCard, $amount : amount)
+then
+	insert(new Entry($cc, $amount));
+end
